@@ -1,0 +1,281 @@
+<%- include('../partials/head'), {title} %>
+<h1 class="text-3xl font-bold text-gray-400 mb-5">
+  Ankieta dalszej współpracy
+</h1>
+
+<form action="/ankieta" class="form" method="POST">
+  <div class="form__row w-full">
+    <label class="form__label" for="date">Data</label>
+    <input
+      class="form__input<%= formValue && formValue.date !== '' && !errors.date ? ' form__input--validate' : ''; %><%= errors && errors.date ? ' form__input--error' : '' %>"
+      type="date"
+      id="date"
+      value="<%= formValue.date %>"
+      name="date"
+      value=""
+      required
+    />
+    <span
+      class="form__error<%= errors && errors.date ? ' form__error--visible' : '' %>"
+      ><%= errors.date ? errors.date.msg : '' %></span
+    >
+  </div>
+
+  <div class="form__row w-full">
+    <label class="form__label" for="weight">Waga</label>
+    <input
+      class="form__input<%= formValue && formValue.weight !== '' && !errors.weight ? ' form__input--validate' : ''; %><%= errors && errors.weight ? ' form__input--error' : '' %>"
+      type="number"
+      id="weight"
+      value="<%= formValue.weight %>"
+      name="weight"
+      min="0"
+      required
+    />
+    <span
+      class="form__error<%= errors && errors.weight ? ' form__error--visible' : '' %>"
+      ><%= errors.weight ? errors.weight.msg : '' %></span
+    >
+  </div>
+  <div class="form__row w-full">
+    <label class="form__label" for="chest"
+      >Obwód klatki piersiowej (linia sutkowa)</label
+    >
+    <input
+      class="form__input<%= formValue && formValue.chest !== '' && !errors.chest ? ' form__input--validate' : ''; %><%= errors && errors.chest ? ' form__input--error' : '' %>"
+      type="number"
+      id="chest"
+      value="<%= formValue.chest %>"
+      name="chest"
+      min="0"
+      required
+    />
+    <span
+      class="form__error<%= errors && errors.chest ? ' form__error--visible' : '' %>"
+      ><%= errors.chest ? errors.chest.msg : '' %></span
+    >
+  </div>
+
+  <div class="form__row w-full">
+    <label class="form__label" for="belly">Brzuch (linia pępka):</label>
+    <input
+      class="form__input<%= formValue && formValue.belly !== '' && !errors.belly ? ' form__input--validate' : ''; %><%= errors && errors.belly ? ' form__input--error' : '' %>"
+      type="number"
+      id="belly"
+      value="<%= formValue.belly %>"
+      name="belly"
+      min="0"
+      required
+    />
+    <span
+      class="form__error<%= errors && errors.belly ? ' form__error--visible' : '' %>"
+      ><%= errors.belly ? errors.belly.msg : '' %></span
+    >
+  </div>
+
+  <div class="form__row w-full">
+    <label class="form__label" for="hips"
+      >Biodra (w najszerszym miejscu):</label
+    >
+    <input
+      class="form__input<%= formValue && formValue.hips !== '' && !errors.hips ? ' form__input--validate' : ''; %><%= errors && errors.hips ? ' form__input--error' : '' %>"
+      type="number"
+      id="hips"
+      value="<%= formValue.hips %>"
+      name="hips"
+      min="0"
+      required
+    />
+    <span
+      class="form__error<%= errors && errors.hips ? ' form__error--visible' : '' %>"
+      ><%= errors.hips ? errors.hips.msg : '' %></span
+    >
+  </div>
+
+  <div class="form__row w-full">
+    <label class="form__label" for="biceps"
+      >Obwód ramienia (linia bicepsa luzem):</label
+    >
+    <input
+      class="form__input<%= formValue && formValue.biceps !== '' && !errors.biceps ? ' form__input--validate' : ''; %><%= errors && errors.biceps ? ' form__input--error' : '' %>"
+      type="number"
+      id="biceps"
+      value="<%= formValue.biceps %>"
+      name="biceps"
+      min="0"
+      required
+    />
+    <span
+      class="form__error<%= errors && errors.biceps ? ' form__error--visible' : '' %>"
+      ><%= errors.biceps ? errors.biceps.msg : '' %></span
+    >
+  </div>
+
+  <div class="form__row w-full">
+    <label class="form__label" for="bicepsSec"
+      >Obwód ramienia (linia bicepsa w napięciu):</label
+    >
+    <input
+      class="form__input<%= formValue && formValue.bicepsSec !== '' && !errors.bicepsSec ? ' form__input--validate' : ''; %><%= errors && errors.bicepsSec ? ' form__input--error' : '' %>"
+      type="number"
+      id="bicepsSec"
+      value="<%= formValue.bicepsSec %>"
+      name="bicepsSec"
+      min="0"
+      required
+    />
+    <span
+      class="form__error<%= errors && errors.bicepsSec ? ' form__error--visible' : '' %>"
+      ><%= errors.bicepsSec ? errors.bicepsSec.msg : '' %></span
+    >
+  </div>
+
+  <div class="form__row w-full">
+    <label class="form__label" for="thigh">Udo (w najszerszym miejscu):</label>
+    <input
+      class="form__input<%= formValue && formValue.thigh !== '' && !errors.thigh ? ' form__input--validate' : ''; %><%= errors && errors.thigh ? ' form__input--error' : '' %>"
+      type="number"
+      id="thigh"
+      value="<%= formValue.thigh %>"
+      name="thigh"
+      min="0"
+      required
+    />
+    <span
+      class="form__error<%= errors && errors.thigh ? ' form__error--visible' : '' %>"
+      ><%= errors.thigh ? errors.thigh.msg : '' %></span
+    >
+  </div>
+  <div class="form__row w-full">
+    <label class="form__label" for="activity"
+      >Aktywność fizyczna (wg. tabelki zamieszczonej pod ankietą):
+    </label>
+    <input
+      class="form__input<%= formValue && formValue.activity !== '' && !errors.activity ? ' form__input--validate' : ''; %><%= errors && errors.activity ? ' form__input--error' : '' %>"
+      type="number"
+      id="activity"
+      value="<%= formValue.activity %>"
+      name="activity"
+      min="1"
+      max="2"
+      required
+    />
+    <span
+      class="form__error<%= errors && errors.activity ? ' form__error--visible' : '' %>"
+      ><%= errors.activity ? errors.activity.msg : '' %></span
+    >
+  </div>
+
+  <div class="form__row w-full">
+    <label class="form__label" for="comfort"
+      >Jakie jest twoje samopoczucie psychiczne / fizyczne?</label
+    >
+    <textarea
+      class="form__input<%= formValue && formValue.comfort !== '' && !errors.comfort ? ' form__input--validate' : ''; %><%= errors && errors.comfort ? ' form__input--error' : '' %>"
+      id="comfort"
+      name="comfort"
+      minlength="3"
+      required
+    >
+<%= formValue.comfort %></textarea
+    >
+    <span
+      class="form__error<%= errors && errors.comfort ? ' form__error--visible' : '' %>"
+      ><%= errors.comfort ? errors.comfort.msg : '' %></span
+    >
+  </div>
+
+  <div class="form__row w-full">
+    <label class="form__label" for="sleep"
+      >Ile zazwyczaj godzin śpisz w ciągu doby?
+    </label>
+    <input
+      class="form__input<%= formValue && formValue.sleep !== '' && !errors.sleep ? ' form__input--validate' : ''; %><%= errors && errors.sleep ? ' form__input--error' : '' %>"
+      type="number"
+      id="sleep"
+      value="<%= formValue.sleep %>"
+      name="sleep"
+      min="0"
+      max="24"
+      required
+    />
+    <span
+      class="form__error<%= errors && errors.sleep ? ' form__error--visible' : '' %>"
+      ><%= errors.sleep ? errors.sleep.msg : '' %></span
+    >
+  </div>
+
+  <div class="form__row w-full">
+    <label class="form__label" for="training"
+      >Ile razy chcesz trenować w skali tygodnia? (preferowane minimum 2 dni w
+      tygodniu)
+    </label>
+    <input
+      class="form__input<%= formValue && formValue.training !== '' && !errors.training ? ' form__input--validate' : ''; %><%= errors && errors.training ? ' form__input--error' : '' %>"
+      type="number"
+      value="<%= formValue.training %>"
+      id="training"
+      name="training"
+      min="2"
+      required
+    />
+    <span
+      class="form__error<%= errors && errors.training ? ' form__error--visible' : '' %>"
+      ><%= errors.training ? errors.training.msg : '' %></span
+    >
+  </div>
+
+  <div class="form__row w-full">
+    <label class="form__label" for="pain"
+      >Czy doskwierają Ci jakieś bóle? (jeśli tak, to opisz)
+    </label>
+    <textarea
+      class="form__input<%= formValue && formValue.pain !== '' && !errors.pain ? ' form__input--validate' : ''; %><%= errors && errors.pain ? ' form__input--error' : '' %>"
+      id="pain"
+      name="pain"
+      minlength="3"
+    >
+<%= formValue.pain %></textarea
+    >
+    <span
+      class="form__error<%= errors && errors.pain ? ' form__error--visible' : '' %>"
+      ><%= errors.pain ? errors.pain.msg : '' %></span
+    >
+  </div>
+
+  <div class="form__row w-full">
+    <label class="form__label" for="comments">Inne uwagi / problemy?</label>
+    <textarea
+      class="form__input<%= formValue && formValue.comments !== '' && !errors.comments ? ' form__input--validate' : ''; %><%= errors && errors.comments ? ' form__input--error' : '' %>"
+      id="comments"
+      name="comments"
+      minlength="3"
+    >
+<%= formValue.comments %></textarea
+    >
+    <span
+      class="form__error<%= errors && errors.comments ? ' form__error--visible' : '' %>"
+      ><%= errors.comments ? errors.comments.msg : '' %></span
+    >
+  </div>
+
+  <div class="form__row w-full">
+    <label class="form__label" for="pregnancy">Czy jesteś w ciąży?</label>
+    <textarea
+      class="form__input<%= formValue && formValue.pregnancy !== '' && !errors.pregnancy ? ' form__input--validate' : ''; %><%= errors && errors.pregnancy ? ' form__input--error' : '' %>"
+      id="pregnancy"
+      name="pregnancy"
+      minlength="3"
+    >
+<%= formValue.pregnancy %></textarea
+    >
+    <span
+      class="form__error<%= errors && errors.pregnancy ? ' form__error--visible' : '' %>"
+      ><%= errors.pregnancy ? errors.pregnancy.msg : '' %></span
+    >
+  </div>
+
+  <button type="submit" class="form__button">Wyślij</button>
+  <input type="hidden" name="spreadsheetId" value="<%= spreadsheetId %>" />
+</form>
+<%- include('../partials/footer') %>

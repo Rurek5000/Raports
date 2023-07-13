@@ -1,0 +1,68 @@
+$form: ".form";
+html #{$form} {
+  max-width: 400px;
+  width: 400px;
+  gap: 15px;
+
+  &,
+  &__row {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+  }
+  &__row {
+    gap: 5px;
+  }
+  &__input {
+    width: 100%;
+    border-radius: var(--borderRadius);
+    padding: 8px 12px;
+    max-height: 150px;
+    min-height: 50px;
+    border: 2px solid transparent;
+    transition: border-color var(--transition);
+
+    &--validate {
+      border-color: var(--green);
+    }
+    &--error {
+      border-color: var(--red);
+    }
+  }
+
+  &__input,
+  &__label {
+    color: var(--grey);
+  }
+
+  &__button {
+    border-radius: var(--borderRadius);
+    color: var(--navy);
+    background: var(--yellow);
+    border: 2px solid var(--yellow);
+    width: 100%;
+    display: block;
+    padding: 8px 15px;
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 15px;
+    transition: background var(--transition), color var(--transition);
+    &:hover {
+      background: var(--navy);
+      color: var(--grey);
+    }
+  }
+  &__error {
+    color: var(--red);
+    font-size: 14px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition) visibility var(--transition);
+
+    &--visible {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

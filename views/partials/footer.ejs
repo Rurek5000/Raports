@@ -1,0 +1,89 @@
+<script>
+    const form = [...document.forms].find(el => el.classList.contains('form'));
+    const formRows = [...form.querySelectorAll('.form__row')];
+    const dateReg = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
+    const requiredFieldLength = formRows.filter(el => el.querySelector('input, textarea').required).length;
+
+    function getFieldError(el) {
+        const validity = el.validity;
+
+        if (validity.valid) return true;
+
+        if (validity.valueMissing) return 'Wypełnij pole';
+
+        if (validity.typeMismatch) {
+            if (el.type === 'email') return 'Wpisz poprawny email';
+            if (el.type === 'url') return 'Wpisz poprawny adres URL';
+        }
+
+        if (validity.tooShort) return 'Wpisana wartość jest za krótka';
+
+        if (validity.tooLong) return 'Wpisana wartość jest za długa';
+
+        if (validity.badInput) return 'Wpisz liczbę';
+
+        if (validity.stepMismatch) return 'Wybierz poprawną wartość';
+
+        if (validity.rangeOverflow) return 'Wybierz mniejszą wartość';
+
+        if (validity.rangeUnderflow) return 'Wybierz większą wartość';
+
+        if (validity.patternMismatch) return 'Wpisana wartość nie spełnia wymagań';
+
+        return 'Wypełnij poprawnie pole';
+    };
+
+    function addValidateClass(input) {
+        if(input.required) input.classList.add('validate--required');
+            input.classList.remove('form__input--error');
+            input.classList.add('form__input--validate');
+    }
+    function removeValidateClass(input) {
+        if(input.required) input.classList.remove('validate--required');
+            input.classList.remove('form__input--validate');
+            input.classList.add('form__input--error');
+    }
+    
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        for(formRow of formRows) {
+            const input = formRow.querySelector('input, textarea');
+            const error = input.parentNode.querySelector('.form__error')
+
+            if(input.checkValidity())
+            {
+                addValidateClass(input);
+                error.innerHTML = ''; 
+                error.classList.remove('form__error--visible');
+            }
+            
+            else {
+                removeValidateClass(input);
+                error.innerHTML = getFieldError(input);
+                error.classList.add('form__error--visible');
+            }
+
+
+            // if(input.type === 'number')
+            //     validate(input.value <= 0, 'To pole musi zawierać liczbę', input)
+            // else if(input.type === 'textarea')
+            //     validate(input.value.length < 3, 'To pole musi zawierać conajmniej 3 znaki', input)
+            // else if(input.type === 'date')
+            //     validate(!dateReg.test(input.value), 'To pole musi być datą', input)
+        }
+
+        if(form.querySelectorAll('.validate--required').length === requiredFieldLength)
+            form.submit();
+    });
+
+</script>
+<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
+    <p class="col-md-4 mb-0 text-muted">&copy; 2021 Simple Blog</p>
+    <ul class="nav col-md-4 justify-content-end">
+        <li class="nav-item"><a href="/" class="nav-link px-2">Home</a></li>
+        <li class="nav-item"><a href="/articles" class="nav-link px-2">Articles</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2">About</a></li>
+    </ul>
+</footer>
+</body>
+</html>
